@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH Tube</title>
+    <link rel="shortcut icon" href="./LOGO/Logo.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                        'btn-primary-clr': '#FF1F3D'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header class="container mx-auto lg:px-14 ">
+        <nav class="flex justify-between border-b-2 p-5 lg:py-8">
+            <img src="./LOGO/Logo.png" alt="">
+            <button class="btn btn-secondary">Sort by view</button>
+            <button class="btn btn-secondary">Blog</button>
+        </nav>
+    </header>
+    <main class="container mx-auto lg:px-14 my-6">
+        <!-- tab section -->
+        <section>
+            <!-- <button o
+                class="btn  bg-btn-primary-clr text-white py-1 px-5 font-semibold text-lg active:bg-teal-500">All</button> -->
+            <div id="tab-conteiner" class="flex justify-around w-1/3 mx-auto">
+
+            </div>
+        </section>
+        <!-- content or card section -->
+        <section>
+            <div>
+                <div class="focouscard ">
+                    <figure><img src="" alt="" /></figure>
+                    <div class="focouscard-body">
+                        <h2 class="focouscard-title">
+                            Shoes!
+                            <div class="focousbadge focousbadge-secondary">NEW</div>
+                        </h2>
+                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                        <div class="focouscard-actions justify-end">
+                            <div class="focousbadge focousbadge-outline">Fashion</div>
+                            <div class="focousbadge focousbadge-outline">Products</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="JS/index.js"></script>
+</body>
+
+</html>
