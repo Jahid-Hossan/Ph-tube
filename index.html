@@ -40,19 +40,21 @@
             </div>
         </section>
         <!-- content or card section -->
-        <section>
+        <section id="card-conteiner" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div>
-                <div class="focouscard ">
-                    <figure><img src="" alt="" /></figure>
-                    <div class="focouscard-body">
-                        <h2 class="focouscard-title">
-                            Shoes!
-                            <div class="focousbadge focousbadge-secondary">NEW</div>
-                        </h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div class="focouscard-actions justify-end">
-                            <div class="focousbadge focousbadge-outline">Fashion</div>
-                            <div class="focousbadge focousbadge-outline">Products</div>
+                <div class="focouscard space-y-5 ">
+                    <div class="relative">
+                        <figure><img class="rounded-lg" src="./test/thambnail.jpg" alt="" /></figure>
+                        <p class="absolute hidden rounded px-2 py-1 bg-slate-800 text-white right-5 bottom-5  ">3hrs 56
+                            min ago</p>
+                    </div>
+                    <div class="focouscard-body flex gap-3">
+                        <img class="w-10 h-10 rounded-full" src="./test/author.jpg" alt="">
+                        <div class="space-y-2">
+                            <h2 class="font-bold text-base">Shape of You <div></div>
+                            </h2>
+                            <h4 class="font-normal text-sm text-gray-600">Olivia Mitchell</h4>
+                            <p class="font-normal text-sm text-gray-600">100K views</p>
                         </div>
                     </div>
                 </div>
