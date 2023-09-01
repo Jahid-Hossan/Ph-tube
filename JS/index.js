@@ -12,7 +12,7 @@ const showTab = (options) => {
         const li = document.createElement('li');
         li.classList.add('list-none');
         li.innerHTML = `
-        <button id="${option.category_id}"  onclick="tabHandler('${option.category_id}')" class="btn bg-btn-primary-clr text-white py-1 px-5 font-semibold text-lg active:bg-teal-500">${option?.category}</button>`
+        <button id="${option.category_id}"  onclick="tabHandler('${option.category_id}')" class="btn bg-btn-primary-clr active:bg-blue-600 text-white py-1 px-5 font-semibold text-lg active:bg-teal-500">${option?.category}</button>`
         tabConteiner.appendChild(li);
     }
     );
@@ -33,20 +33,23 @@ const tabHandler = async (id) => {
 const clickTab = (videos) => {
     const cardConteiner = document.getElementById('card-conteiner')
     cardConteiner.innerText = '';
-    console.log(videos.length);
+    // console.log(videos.length);
     const emptyConteiner = document.getElementById('empty-conteiner');
     if (videos.length > 0) {
-        emptyConteiner.classList.add('hidden')
+        emptyConteiner.classList.add('hidden');
         videos.forEach(items => {
-            const postedTime = items?.others?.posted_date;
-            console.log(postedTime);
+            // 
+            const times = items?.others?.posted_date;
+            const totalHr = convertTimeToHr(times);
+            const totalMin = convertTimeToMin(times);
+
+            console.log(items?.others?.posted_date);
             const cardDiv = document.createElement('div');
             cardDiv.innerHTML = `
-        <div class="focouscard space-y-5 ">
+                <div class="focouscard space-y-5 ">
                     <div class="relative">
                         <figure><img class="rounded-lg  w-full h-52" src="${items?.thumbnail}" alt="" /></figure>
-                        <p class="absolute rounded px-2 py-1 bg-slate-800 text-white right-5 bottom-5  ">3hrs 56
-                            min ago</p>
+                        ${times ? `<p class="absolute rounded px-2 py-1 bg-slate-800 text-white right-5 bottom-5  "><span>${totalHr}</span> hrs <span>${totalMin}</span> min ago</p>` : ''}
                     </div>
                     <div class="focouscard-body flex gap-3">
                         <img class="w-10 h-10 rounded-full" src="${items?.authors[0]?.profile_picture}.jpg" alt="">
@@ -72,12 +75,16 @@ const clickTab = (videos) => {
                     </div>
                 </div>`
             cardConteiner.appendChild(cardDiv);
+
         });
     } else {
         emptyConteiner.classList.remove('hidden')
     }
 
 }
+
+
+
 
 const filterByViewHandler = () => {
     sortByView(fetchedVideos);
@@ -101,5 +108,24 @@ const sortByView = (dataForSort) => {
 
     clickTab(dataForSort);
 }
+
+const convertTimeToHr = (seconds) => {
+    const hour = seconds / 3600;
+    const exectHr = Math.floor(hour)
+    const min = hour - exectHr;
+    const exectMin = Math.floor(min * 60)
+    // console.log(exectHr, exectMin);
+    return exectHr;
+}
+
+const convertTimeToMin = (seconds) => {
+    const hour = seconds / 3600;
+    const exectHr = Math.floor(hour)
+    const min = hour - exectHr;
+    const exectMin = Math.floor(min * 60)
+    // console.log(exectHr, exectMin);
+    return exectMin;
+}
+
 getTab();
 tabHandler(1000);
