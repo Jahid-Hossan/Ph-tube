@@ -33,9 +33,15 @@ const tabHandler = async (id) => {
 const clickTab = (videos) => {
     const cardConteiner = document.getElementById('card-conteiner')
     cardConteiner.innerText = '';
-    videos.forEach(items => {
-        const cardDiv = document.createElement('div');
-        cardDiv.innerHTML = `
+    console.log(videos.length);
+    const emptyConteiner = document.getElementById('empty-conteiner');
+    if (videos.length > 0) {
+        emptyConteiner.classList.add('hidden')
+        videos.forEach(items => {
+            const postedTime = items?.others?.posted_date;
+            console.log(postedTime);
+            const cardDiv = document.createElement('div');
+            cardDiv.innerHTML = `
         <div class="focouscard space-y-5 ">
                     <div class="relative">
                         <figure><img class="rounded-lg  w-full h-52" src="${items?.thumbnail}" alt="" /></figure>
@@ -65,8 +71,11 @@ const clickTab = (videos) => {
                         </div>
                     </div>
                 </div>`
-        cardConteiner.appendChild(cardDiv);
-    });
+            cardConteiner.appendChild(cardDiv);
+        });
+    } else {
+        emptyConteiner.classList.remove('hidden')
+    }
 
 }
 
