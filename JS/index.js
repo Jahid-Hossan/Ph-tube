@@ -84,10 +84,10 @@ const sortByView = (dataForSort) => {
         const viewA = parseFloat(a.others.views);
         const viewB = parseFloat(b.others.views);
         if (viewA < viewB) {
-            return -1;
+            return 1;
         }
         if (viewA > viewB) {
-            return 1;
+            return -1;
         }
     });
     clickTab(dataForSort);
