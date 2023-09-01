@@ -8,14 +8,12 @@ const getTab = async () => {
 const showTab = (options) => {
     const tabConteiner = document.getElementById('tab-conteiner')
     options.forEach(option => {
-        // console.log(option.category);
         const li = document.createElement('li');
         li.classList.add('list-none');
         li.innerHTML = `
-        <button id="${option.category_id}"  onclick="tabHandler('${option.category_id}')" class="btn bg-btn-primary-clr active:bg-blue-600 text-white py-1 px-5 font-semibold text-lg active:bg-teal-500">${option?.category}</button>`
+        <button id="${option.category_id}"  onclick="tabHandler('${option.category_id}')" class="btn bg-btn-primary-clr  text-white py-1 px-5 font-semibold text-lg active:bg-teal-500">${option?.category}</button>`
         tabConteiner.appendChild(li);
-    }
-    );
+    });
 }
 
 let fetchedVideos = [];
@@ -25,24 +23,19 @@ const tabHandler = async (id) => {
     const res = await response.json();
     const data = res?.data;
     fetchedVideos = data;
-
     clickTab(fetchedVideos);
 }
-// console.log(data);
 
 const clickTab = (videos) => {
     const cardConteiner = document.getElementById('card-conteiner')
     cardConteiner.innerText = '';
-    // console.log(videos.length);
     const emptyConteiner = document.getElementById('empty-conteiner');
     if (videos.length > 0) {
         emptyConteiner.classList.add('hidden');
         videos.forEach(items => {
-            // 
             const times = items?.others?.posted_date;
             const totalHr = convertTimeToHr(times);
             const totalMin = convertTimeToMin(times);
-
             console.log(items?.others?.posted_date);
             const cardDiv = document.createElement('div');
             cardDiv.innerHTML = `
@@ -75,22 +68,15 @@ const clickTab = (videos) => {
                     </div>
                 </div>`
             cardConteiner.appendChild(cardDiv);
-
         });
     } else {
         emptyConteiner.classList.remove('hidden')
     }
-
 }
-
-
-
 
 const filterByViewHandler = () => {
     sortByView(fetchedVideos);
 }
-
-
 
 const sortByView = (dataForSort) => {
     console.log(dataForSort);
@@ -103,9 +89,7 @@ const sortByView = (dataForSort) => {
         if (viewA > viewB) {
             return 1;
         }
-
     });
-
     clickTab(dataForSort);
 }
 
@@ -114,7 +98,6 @@ const convertTimeToHr = (seconds) => {
     const exectHr = Math.floor(hour)
     const min = hour - exectHr;
     const exectMin = Math.floor(min * 60)
-    // console.log(exectHr, exectMin);
     return exectHr;
 }
 
@@ -123,7 +106,6 @@ const convertTimeToMin = (seconds) => {
     const exectHr = Math.floor(hour)
     const min = hour - exectHr;
     const exectMin = Math.floor(min * 60)
-    // console.log(exectHr, exectMin);
     return exectMin;
 }
 
