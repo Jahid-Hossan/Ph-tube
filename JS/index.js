@@ -93,6 +93,10 @@ const sortByView = (dataForSort) => {
     clickTab(dataForSort);
 }
 
+const blogSite = () => {
+    window.location.href = 'blog.html';
+}
+
 const convertTimeToHr = (seconds) => {
     const hour = seconds / 3600;
     const exectHr = Math.floor(hour)
