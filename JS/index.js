@@ -1,42 +1,53 @@
+// get categories data
 const getTab = async () => {
     const response = await fetch('https://openapi.programming-hero.com/api/videos/categories');
     const res = await response.json();
     const data = res.data;
     showTab(data)
 }
-
+// create tab button and pass the category data
 const showTab = (options) => {
     const tabConteiner = document.getElementById('tab-conteiner')
     options.forEach(option => {
+        // creating category list button
         const li = document.createElement('li');
         li.classList.add('list-none');
+        // creating inner html for tab button
         li.innerHTML = `
         <button id="${option.category_id}"  onclick="tabHandler('${option.category_id}')" class="btn bg-btn-primary-clr  text-white py-1 px-2 lg:px-5 font-semibold text-lg active:bg-teal-500">${option?.category}</button>`
         tabConteiner.appendChild(li);
     });
 }
-
+// for data store
 let fetchedVideos = [];
-
+// video card data by category btn
 const tabHandler = async (id) => {
     const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
     const res = await response.json();
     const data = res?.data;
+    // pass data to global variable to store for sort 
     fetchedVideos = data;
+    // pass data to card conteiner without sort
     clickTab(fetchedVideos);
 }
-
+// card data after click the tab button
 const clickTab = (videos) => {
-    const cardConteiner = document.getElementById('card-conteiner')
+    // get card conteiner
+    const cardConteiner = document.getElementById('card-conteiner');
+    // make empty card conteiner
     cardConteiner.innerText = '';
+    // get html div box for no content. this conteiner will show if there is no data
     const emptyConteiner = document.getElementById('empty-conteiner');
+    // condition to check is there any data available
     if (videos.length > 0) {
         emptyConteiner.classList.add('hidden');
+        // get single video
         videos.forEach(items => {
+            // get posted time
             const times = items?.others?.posted_date;
             const totalHr = convertTimeToHr(times);
             const totalMin = convertTimeToMin(times);
-            console.log(items?.others?.posted_date);
+            // create card
             const cardDiv = document.createElement('div');
             cardDiv.innerHTML = `
                 <div class="focouscard space-y-5 ">
@@ -73,11 +84,11 @@ const clickTab = (videos) => {
         emptyConteiner.classList.remove('hidden')
     }
 }
-
+// sorting videos by views
 const filterByViewHandler = () => {
     sortByView(fetchedVideos);
 }
-
+// condition for sort
 const sortByView = (dataForSort) => {
     console.log(dataForSort);
     dataForSort.sort((a, b) => {
@@ -90,13 +101,14 @@ const sortByView = (dataForSort) => {
             return -1;
         }
     });
+    // sending sorted data
     clickTab(dataForSort);
 }
-
+// go to blog page
 const blogSite = () => {
     window.location.href = 'blog.html';
 }
-
+// hour calculator
 const convertTimeToHr = (seconds) => {
     const hour = seconds / 3600;
     const exectHr = Math.floor(hour)
@@ -104,7 +116,7 @@ const convertTimeToHr = (seconds) => {
     const exectMin = Math.floor(min * 60)
     return exectHr;
 }
-
+// min calculator
 const convertTimeToMin = (seconds) => {
     const hour = seconds / 3600;
     const exectHr = Math.floor(hour)
