@@ -24,12 +24,14 @@
 
 <body>
     <header class="container mx-auto lg:px-14 ">
-        <nav class="flex justify-between border-b-2 p-5 lg:py-8">
-            <img src="./LOGO/Logo.png" alt="">
-            <button onclick="filterByViewHandler()"
-                class="btn btn-secondary font-normal text-lg bg-btn-primary-clr text-white">Sort by view</button>
-            <button onclick="blogSite()"
-                class="btn btn-secondary font-normal text-white text-lg bg-btn-primary-clr">Blog</button>
+        <nav class="flex flex-col md:flex-row justify-between items-center gap-4 border-b-2 p-5 lg:py-8">
+            <img class="" src="./LOGO/Logo.png" alt="">
+            <div class="flex gap-5 justify-between md:w-2/4 ">
+                <button onclick="filterByViewHandler()"
+                    class="btn btn-secondary font-normal text-lg bg-btn-primary-clr text-white">Sort by view</button>
+                <button onclick="blogSite()"
+                    class="btn btn-secondary font-normal text-white text-lg bg-btn-primary-clr">Blog</button>
+            </div>
         </nav>
     </header>
     <main class="container mx-auto lg:px-14  p-5 lg:py-8">

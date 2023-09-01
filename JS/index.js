@@ -11,7 +11,7 @@ const showTab = (options) => {
         const li = document.createElement('li');
         li.classList.add('list-none');
         li.innerHTML = `
-        <button id="${option.category_id}"  onclick="tabHandler('${option.category_id}')" class="btn bg-btn-primary-clr  text-white py-1 px-5 font-semibold text-lg active:bg-teal-500">${option?.category}</button>`
+        <button id="${option.category_id}"  onclick="tabHandler('${option.category_id}')" class="btn bg-btn-primary-clr  text-white py-1 px-2 lg:px-5 font-semibold text-lg active:bg-teal-500">${option?.category}</button>`
         tabConteiner.appendChild(li);
     });
 }
