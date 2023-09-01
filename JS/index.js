@@ -6,7 +6,6 @@ const getTab = async () => {
 }
 
 const showTab = (options) => {
-    console.log(options);
     const tabConteiner = document.getElementById('tab-conteiner')
     options.forEach(option => {
         // console.log(option.category);
@@ -19,22 +18,28 @@ const showTab = (options) => {
     );
 }
 
-
+let fetchedVideos = [];
 
 const tabHandler = async (id) => {
     const response = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`)
     const res = await response.json();
     const data = res?.data;
-    console.log(data);
+    fetchedVideos = data;
+
+    clickTab(fetchedVideos);
+}
+// console.log(data);
+
+const clickTab = (videos) => {
     const cardConteiner = document.getElementById('card-conteiner')
-    data.forEach(items => {
-        console.log(items);
+    cardConteiner.innerText = '';
+    videos.forEach(items => {
         const cardDiv = document.createElement('div');
         cardDiv.innerHTML = `
         <div class="focouscard space-y-5 ">
                     <div class="relative">
                         <figure><img class="rounded-lg  w-full h-52" src="${items?.thumbnail}" alt="" /></figure>
-                        <p class="absolute hidden rounded px-2 py-1 bg-slate-800 text-white right-5 bottom-5  ">3hrs 56
+                        <p class="absolute rounded px-2 py-1 bg-slate-800 text-white right-5 bottom-5  ">3hrs 56
                             min ago</p>
                     </div>
                     <div class="focouscard-body flex gap-3">
@@ -62,5 +67,30 @@ const tabHandler = async (id) => {
                 </div>`
         cardConteiner.appendChild(cardDiv);
     });
+
+}
+
+const filterByViewHandler = () => {
+    sortByView(fetchedVideos);
+}
+
+
+
+const sortByView = (dataForSort) => {
+    console.log(dataForSort);
+    dataForSort.sort((a, b) => {
+        const viewA = parseFloat(a.others.views);
+        const viewB = parseFloat(b.others.views);
+        if (viewA < viewB) {
+            return -1;
+        }
+        if (viewA > viewB) {
+            return 1;
+        }
+
+    });
+
+    clickTab(dataForSort);
 }
 getTab();
+tabHandler(1000);
